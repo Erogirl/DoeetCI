@@ -1,0 +1,381 @@
+<!-- PRUEBA ACORDEON X 70033 -->
+<br>
+<li class="accordion-item" data-accordion-item>
+    <!-- Enlace para desplegar el DATATABLE -->
+    <a href="#" class="accordion-title">Trabajos (<span id="numTrabajos"></span>)</a>
+    <!-- Contenido que va DENTRO del ACORDEON -->
+    <div class="accordion-content" data-tab-content>
+        <!-- Formulario -->
+        <div id="trabajos_FORM" class="callout" style="display:none">
+            <button class="close-button" aria-label="Close alert" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <!-- FORM CONTAINER -->
+                <div class="large-12 medium-12 columns form content">
+                    <!-- ROW -->
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <!-- Combo -->
+                            <div class="small-12 medium-6 columns">
+                                <label for="idPer">
+                                    <span class="inputlabel">Personal Responsable</span>
+                                    <select id="idPer"></select>
+                                    <input id="idPerh" value="$$DATO7" type="hidden">
+                                    <span class="form-error"></span>
+                                </label>
+                            </div>
+                            <!-- Combo -->
+                            <div class="small-12 medium-6 columns">
+                                <label for="idEst">
+                                    <span class="inputlabel">Estado</span>
+                                    <select id="idEst">
+                                        <option value="PLANIFICADO">PLANIFICADO</option>
+                                        <option value="DESARROLLANDO">DESARROLLANDO</option>
+                                        <option value="EN ESPERA">EN ESPERA</option>
+                                        <option value="BLOQUEADO">BLOQUEADO</option>
+                                        <option value="FINALIZADO">FINALIZADO</option>
+                                    </select>
+                                    <input id="idEsth" value="$$DATO4" type="hidden">
+                                    <span class="form-error"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <!-- DatePicker Fecha Limite-->
+                            <div class="small-12 medium-4 columns">
+                                <label for="idFL">
+                                    <span class="inputlabel">Fecha prevista</span>
+                                    <input type="text" data-validator="customDate" id="idFL" placeholder=""
+                                        value="" pattern="">
+                                    <span class="form-error"></span>
+                                </label>
+                            </div>
+                            <!-- Text Input -->
+                            <div class="small-12 medium-4 columns">
+                                <label for="idHE">
+                                    <span class="inputlabel">Horas estimadas</span>
+                                    <input type="text" id="idHE" placeholder="" value=""
+                                        pattern="number">
+                                    <span class="form-error"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <!-- Textarea -->
+                            <div class="small-12 columns">
+                                <label for="idDesc">
+                                    <span class="inputlabel">Descripción</span>
+                                    <textarea rows="3" id="idDesc" maxlength="" placeholder="" value="$$DATO1"
+                                        pattern=""></textarea>
+                                    <span class="form-error"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <!-- Checkbox -->
+                            <div class="small-12 medium-4 columns icon-form">
+                                <label for="esReproceso_H">
+                                    <input id="idRep" type="checkbox">
+                                    <label for="idRep">
+                                        <span class="checklabel">&nbsp;&nbsp;Reproceso</span>
+                                    </label>
+                                    <input type="hidden" id="esReproceso_H" value="$$DATO8" name="esReproceso_H">
+                                </label>
+                            </div>
+                            <!-- Checkbox -->
+                            <div class="small-12 medium-4 columns icon-form">
+                                <label for="esFacturable_H">
+                                    <input id="idFact" type="checkbox">
+                                    <label for="idFact">
+                                        <span class="checklabel">&nbsp;&nbsp;Facturable</span>
+                                    </label>
+                                    <input type="hidden" id="esFacturable_H" value="$$DATO9" name="esFacturable_H">
+                                </label>
+                            </div>
+                            <!-- Checkbox -->
+                            <div class="small-12 medium-4 columns icon-form">
+                                <label for="esCausaCliente_H">
+                                    <input id="idCC" type="checkbox">
+                                    <label for="idCC">
+                                        <span class="checklabel">&nbsp;&nbsp;Causa cliente</span>
+                                    </label>
+                                    <input type="hidden" id="esCausaCliente_H" value="$$DATO10" name="esCausaCliente_H">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="small-12 columns">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <label class="vhidden">styling</label>
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <button id="guardarAccion" class="b_save button expanded fi-plus" type="button">
+                                            &nbsp; Guardar
+                                        </button>
+                                    </div>
+                                    <div class="hide small-6 columns">
+                                        <button class="b_cancel button fi-x expanded" type="button">
+                                            &nbsp; Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END ROW -->
+                </div>
+            </div>
+            <!-- END FORM -->
+            <br>
+        </div>
+        <div id="trabajos_DT" class="acc_DT overflow row expanded">
+            <table id="$$NOMTABLA" class="display" cellspacing="0" width="100%"></table>
+            <br />
+            <!-- DESPLEGABLE de la pestaña MOSTRAR donde aparecen las columnas y su visibilidad -->
+            <!-- <ul id="$$NOMTABLAmostrarlista" class="no-bullet view-hide hide">
+                $$SELECTORCOLUMNAS
+            </ul>
+
+            DATATABLE de los TRABAJOS asociados a los CLIENTES 
+            <div class="small-12 columns">
+                <br>
+                <table id='$$NOMTABLA' class='display' cellspacing='0' width='100%'></table>
+            </div>-->
+*/
+        </div>
+        <br>
+    </div>
+</li>
+<!-- FIN del ACORDEON -->
+<script>
+    $(function () {
+
+        // General
+        $(".accordion-content>div:not(#formArchivo,#formComunicados) button.close-button").on("click", function () {
+            $(this)
+                .parent()
+                .slideToggle(500);
+            $(this)
+                .parent()
+                .siblings("div:has(table)")
+                .slideToggle(500);
+        });
+
+        $(".b_cancelDT").on("click", function () {
+            $(this)
+                .closest(".callout")
+                .find(".close-button")
+                .trigger("click");
+        });
+
+        var modalInfoParams = {
+            id: "modalInfo",
+            title: "",
+            text: "",
+            options: null
+        };
+        var modalInfo = new RevealModal(modalInfoParams);
+
+        var $formContainer = $("#trabajos_FORM");
+
+        var dtData = $$DATOS;
+        var tableParams = {
+            id: "$$NOMTABLA",
+            tabla: "CDOC_CLIENTES_PROYECTOS_TRABAJOS",
+            primaryKey: "IdTrabajo",
+            connectionString: "DATOS",
+            options: {
+                // Datatable Options Plugin
+                data: dtData,
+                $$COLUMNAS
+            },
+            functions: {
+                drawcallback: {
+                    func: function (instance) {
+                        $("#numTrabajos").text(instance.rows().count());
+                    },
+                    params: null
+                },
+                initComplete: { func: null, params: null },
+                callbackDelete: {
+                    idIndex: null,
+                    func: null,
+                    params: null
+                },
+                addClick: {
+                    idForm: null,
+                    func: function () {
+                        $("#guardarAccion")
+                            .removeClass("update")
+                            .addClass("insert");
+
+                        $("#idDesc,#idFL,#idHE")
+                            .text("")
+                            .val("");
+
+                        $("#trabajos_FORM").slideToggle(500);
+                        $("#trabajos_DT").slideToggle(500);
+                    },
+                    params: null
+                },
+                edit: {
+                    linkIndex: null,
+                    func: function (row) {
+                        // Abrir en nueva pestaña formulario de commet
+                    },
+                    rowParam: true,
+                    params: null
+                },
+                callbackDelete: { idIndex: 0, func: null, params: null },
+                download: { fileIndex: null, func: null, params: null }
+            }
+        };
+
+        var dt = new DatatableObj(tableParams);
+        dt.createInstance();
+        // dt.addExportButton();
+
+        // Combos
+
+        var responsablesCombo = {
+            id: 'idPer',
+            objeto: combo.responsables, //por que responsables???
+            required: false,
+            def: $("#idPerh").val(),
+            data: '',
+            selFirst: false,
+            multiple: true,
+            mselopt: MSELECT_OPT,
+            msingle: false
+        };
+        $.extend(true, responsablesCombo.mselopt, {
+            'onClick': function (view) {
+                if (!$('#idPer').data('multipleSelect').$selectAll.prop('checked')) {      // Primero se lanza el checkall
+                    $("#idPerh").val(('-' + $('#idPer').multipleSelect('getSelects').join('-') + '-'));
+                }
+                if ($("#idPerh").val() == "--") $("#idPerh").val("");
+
+            },
+            'onCheckAll': function () {
+                $("#idPerh").val('todas');
+            },
+            'onUncheckAll': function () {
+                $("#idPerh").val('');
+            },
+        });
+        fillCombobox(responsablesCombo);
+
+        var valorSelect = $("#idPerh").val();
+
+        if (valorSelect == 'todas') {
+            $('#idPer').multipleSelect('checkAll');
+        } else {
+            valorSelect = valorSelect.substr(1, valorSelect.length - 2).split("-");
+            $("#idPer").multipleSelect("setSelects", valorSelect);
+        }
+        $("#idPerh").val(('-' + $('#idPer').multipleSelect('getSelects').join('-') + '-'));
+        if ($("#idPerh").val() == "--") $("#idPerh").val("");
+
+
+        $(".b_deleteDT").prop("disabled", true);
+
+
+        $("#guardarAccion").on("click", function () {
+
+            // VALIDACIONES
+
+            var fecha = $("#idFL").val();
+
+            if (fecha == "") {
+                modalInfo.openTemp(1500, "Aviso", "La fecha prevista es obligatoria");
+                return;
+            }
+
+            var horas = $("#idHE").val();
+
+            if (horas == "") {
+                modalInfo.openTemp(1500, "Aviso", "Las horas estimadas son obligatorias");
+                return;
+            }
+
+            //var trabajo = $("#idDesc").val();
+            var descripcion = $("#idDesc").val();
+            var proyecto = '$$Doc_Param2'; // $("#idPro").val();
+            var estado = $("#idEst").val();
+            var horasEst = $("#idHE").val();
+            var fechaLimite = $("#idFL").val();
+            var responsables = $("#idPer").val();
+            var esReproceso = $("#idRep").val();;
+            var esFacturable = $("#idFact").val();
+            var esCausaCliente = $("#idCC").val();
+            var dependencias = $("#dependencias").val();
+            var operacion = $("#operaciones").val();
+
+            // INSERT DEL TRABAJO
+           // var consultaSQL = " INSERT INTO  [CDOC_CLIENTES_PROYECTOS_TRABAJOS]( [DescripcionTrabajo], [IdProyecto], [Estado], [HorasEstimadas], [FechaLimite], [IdPersonal], [Reproceso], [Facturable], [CausaCliente])" +
+           //     " VALUES( " + descripcion + "," + proyecto + ",'" + estado + "'," + horasEst + "," + fechaLimite + ",'" + responsables + "'," + esReproceso + "," + esFacturable + ", " + esCausaCliente +")";
+
+                var consultaSQL = " INSERT INTO  [CDOC_CLIENTES_PROYECTOS_TRABAJOS]( [IdProyecto], [IdOperacion], [DescripcionTrabajo], [OrdenPrioridad], [Visible], [Estado], [HorasEstimadas], [FechaLimite], [Reproceso], [Facturable], [CausaCliente], [Hito],[IdSolicitud], [IdPersonal], [Dependencias])" +
+                " VALUES( " + proyecto + "," + operacion + ",'" + descripcion + "'," + prioridad + ", 1, " + estado + ",'" + horasEst + ",'" + fechaLimite + "'," + esReproceso + "," + esFacturable + ", " + esCausaCliente + ", 0, $$Doc_Param2,'" + responsables + "'," + dependencias + ")";
+
+
+
+//" INSERT INTO  [CDOC_CLIENTES_PROYECTOS_TRABAJOS]( [DescripcionTrabajo], [IdProyecto], [Estado], [HorasEstimadas], [FechaLimite], [IdPersonal], [Reproceso], [Facturable], [CausaCliente]) VALUES( asaadada,undefined,'PLANIFICADO',undefined,1,'PLANIFICADO',25/12/2020,'65,66',0,0, 0)"
+            console.log("SQL", consultaSQL);
+            runSQL(
+                consultaSQL,
+                "DATOS",
+                function (res) {
+                    // var row = row[0].split(";");
+                    // row = getFormattedChecks(row);
+                    // row[0] = '<a href="default.aspx?id=70013&P1=Edit&P2='+idOrden+'">'+idOrden+'</a>'
+                    //console.log(row);
+                    //row.push('<td><button title="Editar" class="boton-editar" type="button"><i class="fi-pencil">&nbsp;</i></button>');
+                    // dt.addRows([row]);
+                },
+                function (resError) {
+                    console.log(resError);
+
+                });
+
+
+            var sql = "SELECT T.[IdTrabajo], T.[DescripcionTrabajo], T.[IdProyecto], P.[Denominacion], T.[Estado], T.[HorasEstimadas], T.[FechaLimite], T.[IdPersonal], T.[Reproceso], T.[Facturable], T.[CausaCliente] FROM [CDOC_CLIENTES_PROYECTOS_TRABAJOS] T INNER JOIN [CDOC_CLIENTES_PROYECTOS] AS P ON T.[IdProyecto] = P.[Id] INNER JOIN [CDOC_CLIENTES_PROYECTOS_LANZAMIENTOS] AS L ON L.[id] = T.[IdLanzamiento] WHERE L.[id] = '$$Doc_Param2' "
+           console.log("2a SQL", sql);
+            runSQL(sql, "DATOS",
+                function (row) {
+                    console.log("Entra");
+
+                    var row = row[0].split(";");
+                    row = getFormattedChecks(row);
+                    // row[0] = '<a href="default.aspx?id=70013&P1=Edit&P2='+idOrden+'">'+idOrden+'</a>'
+                    console.log(row);
+                    /*row.push(
+                      '<td><button title="Editar" class="boton-editar" type="button"><i class="fi-pencil">&nbsp;</i></button>'
+                    );*/
+                    dt.addRows([row]);
+                },
+                function (resError) {
+                    console.log(resError);
+                });
+
+
+            $("#trabajos_FORM").slideToggle(500);
+            $("#trabajos_DT").slideToggle(500);
+
+        });
+
+    });
+
+</script>
